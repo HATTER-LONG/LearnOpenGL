@@ -4,17 +4,15 @@
 
 ## 项目描述
 
-该项目创建了一个基本的OpenGL窗口，配置了OpenGL 4.6核心模式环境。项目使用CMake作为构建系统，支持跨平台开发。
+该项目创建了一个基本的OpenGL窗口，配置了OpenGL 3.3核心模式环境。项目使用CMake作为构建系统，支持跨平台开发。
 
 ## 依赖库
 
 项目依赖以下库：
 
-- **OpenGL**：图形渲染 API
+- **OpenGL**：图形渲染API
 - **GLFW3**：提供窗口创建和输入处理功能
-- **GLEW**：OpenGL 扩展加载库（使用静态链接）
-  - 项目使用[glew-cmake](https://github.com/Perlmint/glew-cmake)版本
-  - BUILD_SHARED_LIBS 选项设置为 OFF，使用静态链接
+- **GLAD**：OpenGL函数加载库，用于加载OpenGL函数指针
 
 ## 环境要求
 
@@ -55,10 +53,10 @@ cd opengl_test
 2. 安装依赖库：
 ```
 # Ubuntu/Debian
-sudo apt install libglfw3-dev libglew-dev
+sudo apt install libglfw3-dev
 
 # macOS (使用Homebrew)
-brew install glfw glew
+brew install glfw
 ```
 
 3. 创建并进入构建目录：
@@ -79,7 +77,8 @@ make
 opengl_test/
 ├── include/          # 头文件目录
 ├── src/              # 源代码目录
-│   └── main.cpp      # 主程序入口
+│   ├── main.cpp      # 主程序入口
+│   └── glad.c        # GLAD源文件
 ├── build/            # 构建输出目录
 ├── CMakeLists.txt    # CMake构建配置
 └── .clang-tidy       # 代码检查配置
@@ -101,8 +100,10 @@ MyCppProject.exe
 
 当前项目实现了：
 - 创建800x600像素的OpenGL窗口
-- 配置OpenGL 4.6核心模式上下文
+- 配置OpenGL 3.3核心模式上下文
 - 基本的渲染循环结构
+- 窗口大小变化响应
+- ESC键退出程序
 
 ## 扩展开发
 
