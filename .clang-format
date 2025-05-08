@@ -18,4 +18,5 @@ SpaceInEmptyParentheses: false
 SpacesInCStyleCastParentheses: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
+SortIncludes: false
 PointerAlignment: Left
