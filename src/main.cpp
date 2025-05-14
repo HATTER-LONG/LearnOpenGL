@@ -3,8 +3,10 @@
 
 #include <iostream>
 
+namespace {
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
+} // namespace
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -61,6 +63,7 @@ int main() {
     return 0;
 }
 
+namespace {
 // process all input: query GLFW whether relevant keys are pressed/released this
 // frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
@@ -79,3 +82,4 @@ void framebufferSizeCallback(GLFWwindow* /*window*/, int width, int height) {
     // displays.
     glViewport(0, 0, width, height);
 }
+} // namespace
