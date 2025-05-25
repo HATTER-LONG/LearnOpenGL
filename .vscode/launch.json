@@ -76,7 +76,7 @@
                     "value": "Something something"
                 }
             ],
-            "externalConsole": true
+            "console": "internalConsole"
         }
     ]
 }
