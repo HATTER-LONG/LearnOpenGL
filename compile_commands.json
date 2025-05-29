@@ -1,0 +1,14 @@
+[
+{
+  "directory": "D:/WorkSpace/LearnOpenGL/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo -ID:\\WorkSpace\\LearnOpenGL\\include -external:ID:\\DevelopTools\\OpenSource\\include -external:W0 /DWIN32 /D_WINDOWS /W3 /MDd /Zi /Ob0 /Od /RTC1 /FoCMakeFiles\\MyCppProject.dir\\src\\glad.c.obj /FdCMakeFiles\\MyCppProject.dir\\ /FS -c D:\\WorkSpace\\LearnOpenGL\\src\\glad.c",
+  "file": "D:\\WorkSpace\\LearnOpenGL\\src\\glad.c",
+  "output": "CMakeFiles\\MyCppProject.dir\\src\\glad.c.obj"
+},
+{
+  "directory": "D:/WorkSpace/LearnOpenGL/build",
+  "command": "C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\Tools\\MSVC\\1443~1.348\\bin\\Hostx64\\x64\\cl.exe  /nologo /TP -ID:\\WorkSpace\\LearnOpenGL\\include -external:ID:\\DevelopTools\\OpenSource\\include -external:W0 /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17 /FoCMakeFiles\\MyCppProject.dir\\src\\main.cpp.obj /FdCMakeFiles\\MyCppProject.dir\\ /FS -c D:\\WorkSpace\\LearnOpenGL\\src\\main.cpp",
+  "file": "D:\\WorkSpace\\LearnOpenGL\\src\\main.cpp",
+  "output": "CMakeFiles\\MyCppProject.dir\\src\\main.cpp.obj"
+}
+]
