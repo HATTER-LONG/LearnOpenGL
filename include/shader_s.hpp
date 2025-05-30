@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
 class Shader {
 public:
     unsigned int m_id;

@@ -1,4 +1,4 @@
-#include "shader_s.h"
+#include "shader_s.hpp"
 
 #include <GLFW/glfw3.h>
 
@@ -11,23 +11,6 @@ void processInput(GLFWwindow* window);
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-
-const char* vertex_shader_source = "#version 330 core\n"
-                                   "layout (location = 0) in vec3 aPos;\n"
-                                   "layout (location = 1) in vec3 aColor;\n"
-                                   "out vec3 vertexColor;\n"
-                                   "void main()\n"
-                                   "{\n"
-                                   "   gl_Position = vec4(aPos, 1.0);\n"
-                                   "   vertexColor = aColor;\n"
-                                   "}\0";
-const char* fragment_shader_source = "#version 330 core\n"
-                                     "out vec4 FragColor;\n"
-                                     "in vec3 vertexColor;\n"
-                                     "void main()\n"
-                                     "{\n"
-                                     "   FragColor = vec4(vertexColor, 1.0);\n"
-                                     "}\n\0";
 
 } // namespace
 int main() {
@@ -61,46 +44,9 @@ int main() {
         return -1;
     }
 
-    // build and compile our shader program
-    // ------------------------------------
-    // vertex shader
-    unsigned int vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertex_shader, 1, &vertex_shader_source, NULL);
-    glCompileShader(vertex_shader);
-    // check for shader compile errors
-    int success;
-    char info_log[512];
-    glGetShaderiv(vertex_shader, GL_COMPILE_STATUS, &success);
-    if(!success) {
-        glGetShaderInfoLog(vertex_shader, 512, NULL, info_log);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n"
-                  << info_log << std::endl;
-    }
-    // fragment shader
-    unsigned int fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragment_shader, 1, &fragment_shader_source, NULL);
-    glCompileShader(fragment_shader);
-    // check for shader compile errors
-    glGetShaderiv(fragment_shader, GL_COMPILE_STATUS, &success);
-    if(!success) {
-        glGetShaderInfoLog(fragment_shader, 512, NULL, info_log);
-        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n"
-                  << info_log << std::endl;
-    }
-    // link shaders
-    unsigned int shader_program = glCreateProgram();
-    glAttachShader(shader_program, vertex_shader);
-    glAttachShader(shader_program, fragment_shader);
-    glLinkProgram(shader_program);
-    // check for linking errors
-    glGetProgramiv(shader_program, GL_LINK_STATUS, &success);
-    if(!success) {
-        glGetProgramInfoLog(shader_program, 512, NULL, info_log);
-        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n"
-                  << info_log << std::endl;
-    }
-    glDeleteShader(vertex_shader);
-    glDeleteShader(fragment_shader);
+    Shader shader("D:/WorkSpace/LearnOpenGL/shaders/shader.vs",
+                  "D:/WorkSpace/LearnOpenGL/shaders/shader.fs");
+    shader.use();
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -112,7 +58,7 @@ int main() {
     };
     unsigned int indices[] = {
         // note that we start from 0!
-        0, 1, 3, // first Triangle
+        1, 3, 0, // first Triangle
         1, 2, 3  // second Triangle
     };
     unsigned int vbo, vao, ebo;
@@ -169,7 +115,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT);
 
         // draw our first triangle
-        glUseProgram(shader_program);
+        shader.use();
         glBindVertexArray(vao); // seeing as we only have a single VAO there's
                                 // no need to bind it every time, but we'll do
                                 // so to keep things a bit more organized
@@ -189,7 +135,6 @@ int main() {
     glDeleteVertexArrays(1, &vao);
     glDeleteBuffers(1, &vbo);
     glDeleteBuffers(1, &ebo);
-    glDeleteProgram(shader_program);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
