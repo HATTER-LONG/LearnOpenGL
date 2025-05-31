@@ -1,4 +1,4 @@
 {
     "editor.formatOnSave": true,
-    "cmake.generator": "Ninja"
+    "cmake.generator": "Ninja",
 }
